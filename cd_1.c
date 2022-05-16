@@ -108,4 +108,3 @@ int updateEnviron(shellMaker *init)
 	updateCur(init, i);
 	return (1);
 }
-
