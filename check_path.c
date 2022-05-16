@@ -1,8 +1,35 @@
 #include "main.h"
 
 /**
+ * checkEdgeCases - helper func for check path to check edge cases
+ * @init: input init
+ * Return: 1 if found, 0 if not
+ */
+int checkEdgeCases(shellMaker *init)
+{
+	char *copy;
+	struct stat st;
+
+	copy = _strdup(init->path);
+	if (!copy)
+	{
+		init->actualPath = init->args[0];
+		free(copy);
+		return (1);
+	}
+	if (*copy == ':' && stat(init->args[0], &st) == 0)
+	{
+		init->actualPath = init->args[0];
+		free(copy);
+		return (1);
+	}
+	free(copy);
+	return (0);
+}
+/**
  * pathCheck - searches $PATH for directory of command
  * @init: initial
+ * Return: 1 if found, 0 if not
  */
 
 int pathCheck(shellMaker *init)
@@ -42,33 +69,6 @@ int pathCheck(shellMaker *init)
 		inLoop = 1;
 	}
 	init->actualPath = init->args[0];
-	free(copy);
-	return (0);
-}
-
-/**
- * checkEdgeCases - helper func for check path to check edge cases
- * @init: input init
- * Return: 1 if found, 0 if not
- */
-int checkEdgeCases(shellMaker *init)
-{
-	char *copy;
-	struct stat st;
-
-	copy = _strdup(init->path);
-	if (!copy)
-	{
-		init->actualPath = init->args[0];
-		free(copy);
-		return (1);
-	}
-	if (*copy == ':' && stat(init->args[0], &st) == 0)
-	{
-		init->actualPath = init->args[0];
-		free(copy);
-		return (1);
-	}
 	free(copy);
 	return (0);
 }

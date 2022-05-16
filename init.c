@@ -10,14 +10,14 @@
 int main(int argc, char **argv)
 {
 	shellMaker init;
-    
-    if (argc)
-    {
-    initializeSetter(&init);
-	init.shellName = argv[0];
-	start(&init);
-    }
-    return (0);
+
+if (argc)
+{
+initializeSetter(&init);
+init.shellName = argv[0];
+start(&init);
+}
+return (0);
 }
 
 /**
