@@ -35,7 +35,7 @@ typedef struct linkedList
 } l_list;
 
 /**
- * struct initialization - cocnfig init settings
+ * struct initialization - config init settings
  * @env: linked list of local env variables
  * @envArr: array of env variables to put into execve
  * @args: array of argument strings
